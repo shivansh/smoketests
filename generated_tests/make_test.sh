@@ -34,8 +34,8 @@ B_flag_head()
 
 B_flag_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make -B
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make -B
 }
 
 atf_test_case e_flag
@@ -46,8 +46,8 @@ e_flag_head()
 
 e_flag_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make -e
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make -e
 }
 
 atf_test_case i_flag
@@ -58,8 +58,8 @@ i_flag_head()
 
 i_flag_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make -i
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make -i
 }
 
 atf_test_case k_flag
@@ -70,8 +70,8 @@ k_flag_head()
 
 k_flag_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make -k
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make -k
 }
 
 atf_test_case n_flag
@@ -82,8 +82,8 @@ n_flag_head()
 
 n_flag_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make -n
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make -n
 }
 
 atf_test_case N_flag
@@ -94,8 +94,8 @@ N_flag_head()
 
 N_flag_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make -N
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make -N
 }
 
 atf_test_case s_flag
@@ -106,8 +106,8 @@ s_flag_head()
 
 s_flag_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make -s
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make -s
 }
 
 atf_test_case t_flag
@@ -118,8 +118,8 @@ t_flag_head()
 
 t_flag_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make -t
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make -t
 }
 
 atf_test_case W_flag
@@ -130,8 +130,8 @@ W_flag_head()
 
 W_flag_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make -W
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make -W
 }
 
 atf_test_case w_flag
@@ -142,10 +142,10 @@ w_flag_head()
 
 w_flag_body()
 {
-	atf_check -s exit:0 -o inline:'make[1]: Entering directory `/usr/home/zeebsd/source-codes/smoketestsuite/tool'
-`generate_test' is up to date.
+	atf_check -s exit:0 -o inline:"make[1]: Entering directory `/usr/home/zeebsd/source-codes/smoketestsuite/tool'
+`generate_tests' is up to date.
 make[1]: Leaving directory `/usr/home/zeebsd/source-codes/smoketestsuite/tool'
-' make -w
+" make -w
 }
 
 atf_test_case X_flag
@@ -156,8 +156,8 @@ X_flag_head()
 
 X_flag_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make -X
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make -X
 }
 
 atf_test_case invalid_usage
@@ -168,24 +168,84 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'`generate_test' is up to date.
-' make -q
-	atf_check -s exit:1 -e inline:'make[1]: don't know how to make utils.o.cpp. Stop
+	atf_check -s not-exit:0 -e inline:"make[1]: option requires an argument -- C
+usage: make [-BeikNnqrstWwX] 
+            [-C directory] [-D variable] [-d flags] [-f makefile]
+            [-I directory] [-J private] [-j max_jobs] [-m directory] [-T file]
+            [-V variable] [variable=value] [target ...]
+" make -C
+	atf_check -s not-exit:0 -e inline:"make[1]: option requires an argument -- D
+usage: make [-BeikNnqrstWwX] 
+            [-C directory] [-D variable] [-d flags] [-f makefile]
+            [-I directory] [-J private] [-j max_jobs] [-m directory] [-T file]
+            [-V variable] [variable=value] [target ...]
+" make -D
+	atf_check -s not-exit:0 -e inline:"make[1]: option requires an argument -- d
+usage: make [-BeikNnqrstWwX] 
+            [-C directory] [-D variable] [-d flags] [-f makefile]
+            [-I directory] [-J private] [-j max_jobs] [-m directory] [-T file]
+            [-V variable] [variable=value] [target ...]
+" make -d
+	atf_check -s not-exit:0 -e inline:"make[1]: option requires an argument -- f
+usage: make [-BeikNnqrstWwX] 
+            [-C directory] [-D variable] [-d flags] [-f makefile]
+            [-I directory] [-J private] [-j max_jobs] [-m directory] [-T file]
+            [-V variable] [variable=value] [target ...]
+" make -f
+	atf_check -s not-exit:0 -e inline:"make[1]: option requires an argument -- I
+usage: make [-BeikNnqrstWwX] 
+            [-C directory] [-D variable] [-d flags] [-f makefile]
+            [-I directory] [-J private] [-j max_jobs] [-m directory] [-T file]
+            [-V variable] [variable=value] [target ...]
+" make -I
+	atf_check -s not-exit:0 -e inline:"make[1]: option requires an argument -- J
+usage: make [-BeikNnqrstWwX] 
+            [-C directory] [-D variable] [-d flags] [-f makefile]
+            [-I directory] [-J private] [-j max_jobs] [-m directory] [-T file]
+            [-V variable] [variable=value] [target ...]
+" make -J
+	atf_check -s not-exit:0 -e inline:"make[1]: option requires an argument -- j
+usage: make [-BeikNnqrstWwX] 
+            [-C directory] [-D variable] [-d flags] [-f makefile]
+            [-I directory] [-J private] [-j max_jobs] [-m directory] [-T file]
+            [-V variable] [variable=value] [target ...]
+" make -j
+	atf_check -s not-exit:0 -e inline:"make[1]: option requires an argument -- m
+usage: make [-BeikNnqrstWwX] 
+            [-C directory] [-D variable] [-d flags] [-f makefile]
+            [-I directory] [-J private] [-j max_jobs] [-m directory] [-T file]
+            [-V variable] [variable=value] [target ...]
+" make -m
+	atf_check -s not-exit:0 -e inline:"`generate_tests' is up to date.
+" make -q
+	atf_check -s not-exit:0 -e inline:"make[1]: don't know how to make utils.o.cpp. Stop
 
 make[1]: stopped in /usr/home/zeebsd/source-codes/smoketestsuite/tool
-' make -r
+" make -r
+	atf_check -s not-exit:0 -e inline:"make[1]: option requires an argument -- T
+usage: make [-BeikNnqrstWwX] 
+            [-C directory] [-D variable] [-d flags] [-f makefile]
+            [-I directory] [-J private] [-j max_jobs] [-m directory] [-T file]
+            [-V variable] [variable=value] [target ...]
+" make -T
+	atf_check -s not-exit:0 -e inline:"make[1]: option requires an argument -- V
+usage: make [-BeikNnqrstWwX] 
+            [-C directory] [-D variable] [-d flags] [-f makefile]
+            [-I directory] [-J private] [-j max_jobs] [-m directory] [-T file]
+            [-V variable] [variable=value] [target ...]
+" make -V
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that make executes successfully and produces a valid output when invoked without any arguments"
+	atf_set "descr" "Verify that make(1) executes successfully and produces a valid output when invoked without any arguments"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:0 -o inline:'`generate_test' is up to date.
-' make
+	atf_check -s exit:0 -o inline:"`generate_tests' is up to date.
+" make
 }
 
 atf_init_test_cases()

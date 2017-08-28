@@ -26,8 +26,7 @@
 # $FreeBSD$
 #
 
-usage_output='usage: rmdir [-pv] directory ...
-'
+usage_output='usage: rmdir'
 
 atf_test_case invalid_usage
 invalid_usage_head()
@@ -37,19 +36,19 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" rmdir -p
-	atf_check -s exit:1 -e inline:"$usage_output" rmdir -v
+	atf_check -s not-exit:0 -e match:"$usage_output" rmdir -p
+	atf_check -s not-exit:0 -e match:"$usage_output" rmdir -v
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that rmdir fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that rmdir(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" rmdir
+	atf_check -s not-exit:0 -e match:"$usage_output" rmdir
 }
 
 atf_init_test_cases()

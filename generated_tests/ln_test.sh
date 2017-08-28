@@ -26,10 +26,7 @@
 # $FreeBSD$
 #
 
-usage_output='usage: ln [-s [-F] | -L | -P] [-f | -i] [-hnv] source_file [target_file]
-       ln [-s [-F] | -L | -P] [-f | -i] [-hnv] source_file ... target_dir
-       link source_file target_file
-'
+usage_output='usage: ln'
 
 atf_test_case invalid_usage
 invalid_usage_head()
@@ -39,27 +36,27 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" ln -F
-	atf_check -s exit:1 -e inline:"$usage_output" ln -L
-	atf_check -s exit:1 -e inline:"$usage_output" ln -P
-	atf_check -s exit:1 -e inline:"$usage_output" ln -f
-	atf_check -s exit:1 -e inline:"$usage_output" ln -h
-	atf_check -s exit:1 -e inline:"$usage_output" ln -i
-	atf_check -s exit:1 -e inline:"$usage_output" ln -n
-	atf_check -s exit:1 -e inline:"$usage_output" ln -s
-	atf_check -s exit:1 -e inline:"$usage_output" ln -v
-	atf_check -s exit:1 -e inline:"$usage_output" ln -w
+	atf_check -s not-exit:0 -e match:"$usage_output" ln -F
+	atf_check -s not-exit:0 -e match:"$usage_output" ln -L
+	atf_check -s not-exit:0 -e match:"$usage_output" ln -P
+	atf_check -s not-exit:0 -e match:"$usage_output" ln -f
+	atf_check -s not-exit:0 -e match:"$usage_output" ln -h
+	atf_check -s not-exit:0 -e match:"$usage_output" ln -i
+	atf_check -s not-exit:0 -e match:"$usage_output" ln -n
+	atf_check -s not-exit:0 -e match:"$usage_output" ln -s
+	atf_check -s not-exit:0 -e match:"$usage_output" ln -v
+	atf_check -s not-exit:0 -e match:"$usage_output" ln -w
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that ln fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that ln(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" ln
+	atf_check -s not-exit:0 -e match:"$usage_output" ln
 }
 
 atf_init_test_cases()

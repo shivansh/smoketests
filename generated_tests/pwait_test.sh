@@ -26,9 +26,6 @@
 # $FreeBSD$
 #
 
-usage_output='usage: pwait [-v] pid ...
-'
-
 atf_test_case invalid_usage
 invalid_usage_head()
 {
@@ -37,18 +34,21 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" pwait -v
+	atf_check -s not-exit:0 -e inline:"pwait: illegal option -- t
+usage: pwait [-v] pid ...
+" pwait -t
+	atf_check -s not-exit:0 -e match:"$usage_output" pwait -v
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that pwait fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that pwait(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" pwait
+	atf_check -s not-exit:0 -e match:"$usage_output" pwait
 }
 
 atf_init_test_cases()

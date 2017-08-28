@@ -26,6 +26,8 @@
 # $FreeBSD$
 #
 
+usage_output='hostname: illeg'
+
 atf_test_case f_flag
 f_flag_head()
 {
@@ -34,8 +36,8 @@ f_flag_head()
 
 f_flag_body()
 {
-	atf_check -s exit:0 -o inline:'zeebsd
-' hostname -f
+	atf_check -s exit:0 -o inline:"zeebsd
+" hostname -f
 }
 
 atf_test_case s_flag
@@ -46,8 +48,8 @@ s_flag_head()
 
 s_flag_body()
 {
-	atf_check -s exit:0 -o inline:'zeebsd
-' hostname -s
+	atf_check -s exit:0 -o inline:"zeebsd
+" hostname -s
 }
 
 atf_test_case invalid_usage
@@ -58,21 +60,21 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'hostname: illegal option -- d
+	atf_check -s not-exit:0 -e inline:"hostname: illegal option -- d
 usage: hostname [-fs] [name-of-host]
-' hostname -d
+" hostname -d
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that hostname executes successfully and produces a valid output when invoked without any arguments"
+	atf_set "descr" "Verify that hostname(1) executes successfully and produces a valid output when invoked without any arguments"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:0 -o inline:'zeebsd
-' hostname
+	atf_check -s exit:0 -o inline:"zeebsd
+" hostname
 }
 
 atf_init_test_cases()

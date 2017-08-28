@@ -26,18 +26,41 @@
 # $FreeBSD$
 #
 
+atf_test_case invalid_usage
+invalid_usage_head()
+{
+	atf_set "descr" "Verify that an invalid usage with a supported option produces a valid error message"
+}
+
+invalid_usage_body()
+{
+	atf_check -s not-exit:0 -e inline:"recoverdisk: option requires an argument -- b
+usage: recoverdisk [-b bigsize] [-r readlist] [-s interval] [-w writelist] source [destination]
+" recoverdisk -b
+	atf_check -s not-exit:0 -e inline:"recoverdisk: option requires an argument -- r
+usage: recoverdisk [-b bigsize] [-r readlist] [-s interval] [-w writelist] source [destination]
+" recoverdisk -r
+	atf_check -s not-exit:0 -e inline:"recoverdisk: option requires an argument -- s
+usage: recoverdisk [-b bigsize] [-r readlist] [-s interval] [-w writelist] source [destination]
+" recoverdisk -s
+	atf_check -s not-exit:0 -e inline:"recoverdisk: option requires an argument -- w
+usage: recoverdisk [-b bigsize] [-r readlist] [-s interval] [-w writelist] source [destination]
+" recoverdisk -w
+}
+
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that recoverdisk fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that recoverdisk(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" recoverdisk
+	atf_check -s not-exit:0 -e match:"$usage_output" recoverdisk
 }
 
 atf_init_test_cases()
 {
+	atf_add_test_case invalid_usage
 	atf_add_test_case no_arguments
 }

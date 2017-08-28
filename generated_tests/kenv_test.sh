@@ -29,12 +29,12 @@
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that kenv executes successfully and produces a valid output when invoked without any arguments"
+	atf_set "descr" "Verify that kenv(1) executes successfully and produces a valid output when invoked without any arguments"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:0 -o inline:'LINES="24"
+	atf_check -s exit:0 -o inline:"LINES="24"
 acpi.oem="VBOX  "
 acpi.revision="2"
 acpi.rsdp="0x000e0000"
@@ -139,7 +139,7 @@ twiddle_divisor="1"
 vfs.root.mountfrom="ufs:/dev/ada0s1a"
 vfs.root.mountfrom.options="rw,acls"
 zfs_be_currpage="1"
-' kenv
+" kenv
 }
 
 atf_init_test_cases()

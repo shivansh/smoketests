@@ -26,58 +26,18 @@
 # $FreeBSD$
 #
 
-usage_output='usage: pkill [-signal] [-ILfilnovx] [-F pidfile] [-G gid] [-M core] [-N system]
-             [-P ppid] [-U uid] [-c class] [-g pgrp] [-j jail]
-             [-s sid] [-t tty] [-u euid] pattern ...
-'
-
-atf_test_case n_flag
-n_flag_head()
-{
-	atf_set "descr" "Verify the usage of option 'n'"
-}
-
-n_flag_body()
-{
-	atf_check -s exit:0 -o empty pkill -n
-}
-
-atf_test_case invalid_usage
-invalid_usage_head()
-{
-	atf_set "descr" "Verify that an invalid usage with a supported option produces a valid error message"
-}
-
-invalid_usage_body()
-{
-	atf_check -s exit:1 -e inline:"$usage_output" pkill -I
-	atf_check -s exit:1 -e inline:"$usage_output" pkill -L
-	atf_check -s exit:1 -e inline:"$usage_output" pkill -S
-	atf_check -s exit:1 -e inline:"$usage_output" pkill -a
-	atf_check -s exit:1 -e inline:"$usage_output" pkill -f
-	atf_check -s exit:1 -e inline:"$usage_output" pkill -i
-	atf_check -s exit:1 -e inline:"$usage_output" pkill -l
-	atf_check -s exit:1 -e inline:'pkill: signalling pid 342: Operation not permitted
-' pkill -o
-	atf_check -s exit:1 -e inline:"$usage_output" pkill -q
-	atf_check -s exit:1 -e inline:"$usage_output" pkill -v
-	atf_check -s exit:1 -e inline:"$usage_output" pkill -x
-}
-
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that pkill fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that mkstr(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" pkill
+	atf_check -s not-exit:0 -e match:"$usage_output" mkstr
 }
 
 atf_init_test_cases()
 {
-	atf_add_test_case n_flag
-	atf_add_test_case invalid_usage
 	atf_add_test_case no_arguments
 }

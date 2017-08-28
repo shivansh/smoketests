@@ -26,6 +26,8 @@
 # $FreeBSD$
 #
 
+usage_output='timeout: optio'
+
 atf_test_case invalid_usage
 invalid_usage_head()
 {
@@ -34,38 +36,28 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'chio: illegal option -- v
-usage: chio [-f changer] command [-<flags>] arg1 arg2 [arg3 [...]]
-' chio -v
-	atf_check -s exit:1 -e inline:'chio: illegal option -- V
-usage: chio [-f changer] command [-<flags>] arg1 arg2 [arg3 [...]]
-' chio -V
-	atf_check -s exit:1 -e inline:'chio: illegal option -- s
-usage: chio [-f changer] command [-<flags>] arg1 arg2 [arg3 [...]]
-' chio -s
-	atf_check -s exit:1 -e inline:'chio: illegal option -- S
-usage: chio [-f changer] command [-<flags>] arg1 arg2 [arg3 [...]]
-' chio -S
-	atf_check -s exit:1 -e inline:'chio: illegal option -- b
-usage: chio [-f changer] command [-<flags>] arg1 arg2 [arg3 [...]]
-' chio -b
-	atf_check -s exit:1 -e inline:'chio: illegal option -- I
-usage: chio [-f changer] command [-<flags>] arg1 arg2 [arg3 [...]]
-' chio -I
-	atf_check -s exit:1 -e inline:'chio: illegal option -- a
-usage: chio [-f changer] command [-<flags>] arg1 arg2 [arg3 [...]]
-' chio -a
+	atf_check -s not-exit:0 -e inline:"Usage: timeout [--signal sig | -s sig] [--preserve-status] [--kill-after time | -k time] [--foreground] <duration> <command> <arg ...>
+" timeout --preserve-status
+	atf_check -s not-exit:0 -e inline:"Usage: timeout [--signal sig | -s sig] [--preserve-status] [--kill-after time | -k time] [--foreground] <duration> <command> <arg ...>
+" timeout --foreground
+	atf_check -s not-exit:0 -e inline:"timeout: option requires an argument -- s
+Usage: timeout [--signal sig | -s sig] [--preserve-status] [--kill-after time | -k time] [--foreground] <duration> <command> <arg ...>
+" timeout -s
+	atf_check -s not-exit:0 -e inline:"timeout: option requires an argument -- k
+Usage: timeout [--signal sig | -s sig] [--preserve-status] [--kill-after time | -k time] [--foreground] <duration> <command> <arg ...>
+" timeout -k
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that chio fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that timeout(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" chio
+	atf_check -s not-exit:0 -e inline:"Usage: timeout [--signal sig | -s sig] [--preserve-status] [--kill-after time | -k time] [--foreground] <duration> <command> <arg ...>
+" timeout
 }
 
 atf_init_test_cases()

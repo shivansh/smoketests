@@ -29,13 +29,13 @@
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that realpath executes successfully and produces a valid output when invoked without any arguments"
+	atf_set "descr" "Verify that realpath(1) executes successfully and produces a valid output when invoked without any arguments"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:0 -o inline:'/usr/home/zeebsd/source-codes/smoketestsuite/tool
-' realpath
+	atf_check -s exit:0 -o inline:"/usr/home/zeebsd/source-codes/smoketestsuite/tool
+" realpath
 }
 
 atf_init_test_cases()

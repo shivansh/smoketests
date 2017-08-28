@@ -26,6 +26,8 @@
 # $FreeBSD$
 #
 
+usage_output='sh: rtld: n'
+
 atf_test_case invalid_usage
 invalid_usage_head()
 {
@@ -34,22 +36,24 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'sh: rtld: not found
-' rtld -p
-	atf_check -s exit:1 -e inline:'sh: rtld: not found
-' rtld --
+	atf_check -s not-exit:0 -e inline:"sh: rtld: not found
+" rtld -f
+	atf_check -s not-exit:0 -e inline:"sh: rtld: not found
+" rtld -p
+	atf_check -s not-exit:0 -e inline:"sh: rtld: not found
+" rtld --
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that rtld fails and generates a valid output when no arguments are supplied"
+	atf_set "descr" "Verify that rtld(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:'sh: rtld: not found
-' rtld
+	atf_check -s not-exit:0 -e inline:"sh: rtld: not found
+" rtld
 }
 
 atf_init_test_cases()

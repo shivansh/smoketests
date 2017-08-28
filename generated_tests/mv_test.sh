@@ -26,9 +26,7 @@
 # $FreeBSD$
 #
 
-usage_output='usage: mv [-f | -i | -n] [-hv] source target
-       mv [-f | -i | -n] [-v] source ... directory
-'
+usage_output='usage: mv'
 
 atf_test_case invalid_usage
 invalid_usage_head()
@@ -38,22 +36,22 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" mv -f
-	atf_check -s exit:1 -e inline:"$usage_output" mv -h
-	atf_check -s exit:1 -e inline:"$usage_output" mv -i
-	atf_check -s exit:1 -e inline:"$usage_output" mv -n
-	atf_check -s exit:1 -e inline:"$usage_output" mv -v
+	atf_check -s not-exit:0 -e match:"$usage_output" mv -f
+	atf_check -s not-exit:0 -e match:"$usage_output" mv -h
+	atf_check -s not-exit:0 -e match:"$usage_output" mv -i
+	atf_check -s not-exit:0 -e match:"$usage_output" mv -n
+	atf_check -s not-exit:0 -e match:"$usage_output" mv -v
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that mv fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that mv(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" mv
+	atf_check -s not-exit:0 -e match:"$usage_output" mv
 }
 
 atf_init_test_cases()

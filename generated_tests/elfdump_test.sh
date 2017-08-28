@@ -26,8 +26,7 @@
 # $FreeBSD$
 #
 
-usage_output='usage: elfdump -a | -cdeGhinprs [-w file] file
-'
+usage_output='elfdump: optio'
 
 atf_test_case invalid_usage
 invalid_usage_head()
@@ -37,28 +36,31 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -a
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -c
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -d
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -e
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -G
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -h
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -i
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -n
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -p
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -r
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump -s
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -a
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -c
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -d
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -e
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -G
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -h
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -i
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -n
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -p
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -r
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump -s
+	atf_check -s not-exit:0 -e inline:"elfdump: option requires an argument -- w
+usage: elfdump -a | -cdeGhinprs [-w file] file
+" elfdump -w
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that elfdump fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that elfdump(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" elfdump
+	atf_check -s not-exit:0 -e match:"$usage_output" elfdump
 }
 
 atf_init_test_cases()

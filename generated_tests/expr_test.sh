@@ -29,13 +29,13 @@
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that expr fails and generates a valid output when no arguments are supplied"
+	atf_set "descr" "Verify that expr(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:'expr: syntax error
-' expr
+	atf_check -s not-exit:0 -e inline:"expr: syntax error
+" expr
 }
 
 atf_init_test_cases()

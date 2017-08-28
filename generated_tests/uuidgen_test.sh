@@ -34,8 +34,8 @@ atf_test_case 1_flag
 
 1_flag_body()
 {
-	atf_check -s exit:0 -o inline:'654589d4-714f-11e7-b40a-080027ca2bb8
-' uuidgen -1
+	atf_check -s exit:0 -o inline:"0cfc2ca6-8ce8-11e7-b8c0-080027ca2bb8
+" uuidgen -1
 }
 
 atf_test_case invalid_usage
@@ -46,24 +46,24 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'uuidgen: option requires an argument -- n
+	atf_check -s not-exit:0 -e inline:"uuidgen: option requires an argument -- n
 usage: uuidgen [-1] [-n count] [-o filename]
-' uuidgen -n
-	atf_check -s exit:1 -e inline:'uuidgen: option requires an argument -- o
+" uuidgen -n
+	atf_check -s not-exit:0 -e inline:"uuidgen: option requires an argument -- o
 usage: uuidgen [-1] [-n count] [-o filename]
-' uuidgen -o
+" uuidgen -o
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that uuidgen executes successfully and produces a valid output when invoked without any arguments"
+	atf_set "descr" "Verify that uuidgen(1) executes successfully and produces a valid output when invoked without any arguments"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:0 -o inline:'65463d99-714f-11e7-b40a-080027ca2bb8
-' uuidgen
+	atf_check -s exit:0 -o inline:"0cfcbc41-8ce8-11e7-b8c0-080027ca2bb8
+" uuidgen
 }
 
 atf_init_test_cases()

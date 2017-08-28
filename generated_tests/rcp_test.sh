@@ -26,9 +26,7 @@
 # $FreeBSD$
 #
 
-usage_output='usage: rcp [-46p] file1 file2
-       rcp [-46pr] file ... directory
-'
+usage_output='usage: rcp'
 
 atf_test_case invalid_usage
 invalid_usage_head()
@@ -38,21 +36,21 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" rcp -4
-	atf_check -s exit:1 -e inline:"$usage_output" rcp -6
-	atf_check -s exit:1 -e inline:"$usage_output" rcp -p
-	atf_check -s exit:1 -e inline:"$usage_output" rcp -r
+	atf_check -s not-exit:0 -e match:"$usage_output" rcp -4
+	atf_check -s not-exit:0 -e match:"$usage_output" rcp -6
+	atf_check -s not-exit:0 -e match:"$usage_output" rcp -p
+	atf_check -s not-exit:0 -e match:"$usage_output" rcp -r
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that rcp fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that rcp(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" rcp
+	atf_check -s not-exit:0 -e match:"$usage_output" rcp
 }
 
 atf_init_test_cases()

@@ -26,8 +26,7 @@
 # $FreeBSD$
 #
 
-usage_output='usage: chmod [-fhv] [-R [-H | -L | -P]] mode file ...
-'
+usage_output='usage: chmod'
 
 atf_test_case invalid_usage
 invalid_usage_head()
@@ -37,24 +36,24 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" chmod -f
-	atf_check -s exit:1 -e inline:"$usage_output" chmod -H
-	atf_check -s exit:1 -e inline:"$usage_output" chmod -h
-	atf_check -s exit:1 -e inline:"$usage_output" chmod -L
-	atf_check -s exit:1 -e inline:"$usage_output" chmod -P
-	atf_check -s exit:1 -e inline:"$usage_output" chmod -R
-	atf_check -s exit:1 -e inline:"$usage_output" chmod -v
+	atf_check -s not-exit:0 -e match:"$usage_output" chmod -f
+	atf_check -s not-exit:0 -e match:"$usage_output" chmod -H
+	atf_check -s not-exit:0 -e match:"$usage_output" chmod -h
+	atf_check -s not-exit:0 -e match:"$usage_output" chmod -L
+	atf_check -s not-exit:0 -e match:"$usage_output" chmod -P
+	atf_check -s not-exit:0 -e match:"$usage_output" chmod -R
+	atf_check -s not-exit:0 -e match:"$usage_output" chmod -v
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that chmod fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that chmod(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" chmod
+	atf_check -s not-exit:0 -e match:"$usage_output" chmod
 }
 
 atf_init_test_cases()

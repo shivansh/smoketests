@@ -34,8 +34,8 @@ L_flag_head()
 
 L_flag_body()
 {
-	atf_check -s exit:0 -o inline:'/usr/home/zeebsd/source-codes/smoketestsuite/tool
-' pwd -L
+	atf_check -s exit:0 -o inline:"/usr/home/zeebsd/source-codes/smoketestsuite/tool
+" pwd -L
 }
 
 atf_test_case P_flag
@@ -46,8 +46,8 @@ P_flag_head()
 
 P_flag_body()
 {
-	atf_check -s exit:0 -o inline:'/usr/home/zeebsd/source-codes/smoketestsuite/tool
-' pwd -P
+	atf_check -s exit:0 -o inline:"/usr/home/zeebsd/source-codes/smoketestsuite/tool
+" pwd -P
 }
 
 atf_test_case invalid_usage
@@ -63,13 +63,13 @@ invalid_usage_body()
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that pwd executes successfully and produces a valid output when invoked without any arguments"
+	atf_set "descr" "Verify that pwd(1) executes successfully and produces a valid output when invoked without any arguments"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:0 -o inline:'/usr/home/zeebsd/source-codes/smoketestsuite/tool
-' pwd
+	atf_check -s exit:0 -o inline:"/usr/home/zeebsd/source-codes/smoketestsuite/tool
+" pwd
 }
 
 atf_init_test_cases()

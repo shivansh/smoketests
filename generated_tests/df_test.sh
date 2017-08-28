@@ -34,10 +34,10 @@ a_flag_head()
 
 a_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   1K-blocks     Used   Avail Capacity  Mounted on
-/dev/ada0s1a  30450780 22875108 5139612    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem   1K-blocks     Used   Avail Capacity  Mounted on
+/dev/ada0s1a  30450780 23990532 4024188    86%    /
 devfs                1        1       0   100%    /dev
-' df -a
+" df -a
 }
 
 atf_test_case b_flag
@@ -48,10 +48,10 @@ b_flag_head()
 
 b_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   512-blocks     Used    Avail Capacity  Mounted on
-/dev/ada0s1a   60901560 45750216 10279224    82%    /
-devfs                 2        2        0   100%    /dev
-' df -b
+	atf_check -s exit:0 -o inline:"Filesystem   512-blocks     Used   Avail Capacity  Mounted on
+/dev/ada0s1a   60901560 47981064 8048376    86%    /
+devfs                 2        2       0   100%    /dev
+" df -b
 }
 
 atf_test_case c_flag
@@ -62,11 +62,11 @@ c_flag_head()
 
 c_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   1K-blocks     Used   Avail Capacity  Mounted on
-/dev/ada0s1a  30450780 22875108 5139612    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem   1K-blocks     Used   Avail Capacity  Mounted on
+/dev/ada0s1a  30450780 23990532 4024188    86%    /
 devfs                1        1       0   100%    /dev
-total         30450781 22875109 5139612    82%  
-' df -c
+total         30450781 23990533 4024188    86%  
+" df -c
 }
 
 atf_test_case g_flag
@@ -77,10 +77,10 @@ g_flag_head()
 
 g_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   1G-blocks Used Avail Capacity  Mounted on
-/dev/ada0s1a        29   21     4    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem   1G-blocks Used Avail Capacity  Mounted on
+/dev/ada0s1a        29   22     3    86%    /
 devfs                0    0     0   100%    /dev
-' df -g
+" df -g
 }
 
 atf_test_case h_flag
@@ -91,10 +91,10 @@ h_flag_head()
 
 h_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem      Size    Used   Avail Capacity  Mounted on
-/dev/ada0s1a     29G     22G    4.9G    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem      Size    Used   Avail Capacity  Mounted on
+/dev/ada0s1a     29G     23G    3.8G    86%    /
 devfs           1.0K    1.0K      0B   100%    /dev
-' df -h
+" df -h
 }
 
 atf_test_case H_flag
@@ -105,10 +105,10 @@ H_flag_head()
 
 H_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem      Size    Used   Avail Capacity  Mounted on
-/dev/ada0s1a     31G     23G    5.3G    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem      Size    Used   Avail Capacity  Mounted on
+/dev/ada0s1a     31G     25G    4.1G    86%    /
 devfs           1.0k    1.0k      0B   100%    /dev
-' df -H
+" df -H
 }
 
 atf_test_case i_flag
@@ -119,10 +119,10 @@ i_flag_head()
 
 i_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   1K-blocks     Used   Avail Capacity iused   ifree %iused  Mounted on
-/dev/ada0s1a  30450780 22875108 5139612    82%  810816 3201982   20%   /
+	atf_check -s exit:0 -o inline:"Filesystem   1K-blocks     Used   Avail Capacity iused   ifree %iused  Mounted on
+/dev/ada0s1a  30450780 23990532 4024188    86%  880273 3132525   22%   /
 devfs                1        1       0   100%       0       0  100%   /dev
-' df -i
+" df -i
 }
 
 atf_test_case k_flag
@@ -133,10 +133,10 @@ k_flag_head()
 
 k_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   1024-blocks     Used   Avail Capacity  Mounted on
-/dev/ada0s1a    30450780 22875108 5139612    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem   1024-blocks     Used   Avail Capacity  Mounted on
+/dev/ada0s1a    30450780 23990532 4024188    86%    /
 devfs                  1        1       0   100%    /dev
-' df -k
+" df -k
 }
 
 atf_test_case l_flag
@@ -147,10 +147,10 @@ l_flag_head()
 
 l_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   1K-blocks     Used   Avail Capacity  Mounted on
-/dev/ada0s1a  30450780 22875108 5139612    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem   1K-blocks     Used   Avail Capacity  Mounted on
+/dev/ada0s1a  30450780 23990532 4024188    86%    /
 devfs                1        1       0   100%    /dev
-' df -l
+" df -l
 }
 
 atf_test_case m_flag
@@ -161,10 +161,10 @@ m_flag_head()
 
 m_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   1M-blocks  Used Avail Capacity  Mounted on
-/dev/ada0s1a     29737 22338  5019    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem   1M-blocks  Used Avail Capacity  Mounted on
+/dev/ada0s1a     29737 23428  3929    86%    /
 devfs                0     0     0   100%    /dev
-' df -m
+" df -m
 }
 
 atf_test_case n_flag
@@ -175,10 +175,10 @@ n_flag_head()
 
 n_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   1K-blocks     Used   Avail Capacity  Mounted on
-/dev/ada0s1a  30450780 22875112 5139608    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem   1K-blocks     Used   Avail Capacity  Mounted on
+/dev/ada0s1a  30450780 23990532 4024188    86%    /
 devfs                1        1       0   100%    /dev
-' df -n
+" df -n
 }
 
 atf_test_case P_flag
@@ -189,10 +189,10 @@ P_flag_head()
 
 P_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   512-blocks     Used    Avail Capacity  Mounted on
-/dev/ada0s1a   60901560 45750224 10279216    82%    /
-devfs                 2        2        0   100%    /dev
-' df -P
+	atf_check -s exit:0 -o inline:"Filesystem   512-blocks     Used   Avail Capacity  Mounted on
+/dev/ada0s1a   60901560 47981064 8048376    86%    /
+devfs                 2        2       0   100%    /dev
+" df -P
 }
 
 atf_test_case T_flag
@@ -203,10 +203,10 @@ T_flag_head()
 
 T_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem    Type  1K-blocks     Used   Avail Capacity  Mounted on
-/dev/ada0s1a  ufs    30450780 22875112 5139608    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem    Type  1K-blocks     Used   Avail Capacity  Mounted on
+/dev/ada0s1a  ufs    30450780 23990532 4024188    86%    /
 devfs         devfs         1        1       0   100%    /dev
-' df -T
+" df -T
 }
 
 atf_test_case ,_flag
@@ -217,10 +217,10 @@ atf_test_case ,_flag
 
 ,_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem    1K-blocks       Used     Avail Capacity  Mounted on
-/dev/ada0s1a   30450780   22875112   5139608    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem    1K-blocks       Used     Avail Capacity  Mounted on
+/dev/ada0s1a   30450780   23990532   4024188    86%    /
 devfs                 1          1         0   100%    /dev
-' df -,
+" df -,
 }
 
 atf_test_case invalid_usage
@@ -231,24 +231,26 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'df: option requires an argument -- t
+	atf_check -s not-exit:0 -e inline:"df: missing libxo option
+" df --libxo
+	atf_check -s not-exit:0 -e inline:"df: option requires an argument -- t
 usage: df [-b | -g | -H | -h | -k | -m | -P] [-acilnT] [-t type] [-,]
           [file | filesystem ...]
-' df -t
+" df -t
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that df executes successfully and produces a valid output when invoked without any arguments"
+	atf_set "descr" "Verify that df(1) executes successfully and produces a valid output when invoked without any arguments"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:0 -o inline:'Filesystem   1K-blocks     Used   Avail Capacity  Mounted on
-/dev/ada0s1a  30450780 22875112 5139608    82%    /
+	atf_check -s exit:0 -o inline:"Filesystem   1K-blocks     Used   Avail Capacity  Mounted on
+/dev/ada0s1a  30450780 23990532 4024188    86%    /
 devfs                1        1       0   100%    /dev
-' df
+" df
 }
 
 atf_init_test_cases()

@@ -26,6 +26,8 @@
 # $FreeBSD$
 #
 
+usage_output='sh: ldns-host: n'
+
 atf_test_case invalid_usage
 invalid_usage_head()
 {
@@ -34,42 +36,52 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -a
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -C
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -d
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -i
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -l
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -r
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -s
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -T
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -v
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -w
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -4
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host -6
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -a
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -C
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -c
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -d
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -i
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -l
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -N
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -r
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -R
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -s
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -T
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -t
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -v
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -w
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -W
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -4
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host -6
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that ldns-host fails and generates a valid output when no arguments are supplied"
+	atf_set "descr" "Verify that ldns-host(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:'sh: ldns-host: not found
-' ldns-host
+	atf_check -s not-exit:0 -e inline:"sh: ldns-host: not found
+" ldns-host
 }
 
 atf_init_test_cases()

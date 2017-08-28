@@ -26,8 +26,7 @@
 # $FreeBSD$
 #
 
-usage_output='usage: chflags [-fhv] [-R [-H | -L | -P]] flags file ...
-'
+usage_output='usage: chflags'
 
 atf_test_case invalid_usage
 invalid_usage_head()
@@ -37,24 +36,24 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" chflags -f
-	atf_check -s exit:1 -e inline:"$usage_output" chflags -H
-	atf_check -s exit:1 -e inline:"$usage_output" chflags -h
-	atf_check -s exit:1 -e inline:"$usage_output" chflags -L
-	atf_check -s exit:1 -e inline:"$usage_output" chflags -P
-	atf_check -s exit:1 -e inline:"$usage_output" chflags -R
-	atf_check -s exit:1 -e inline:"$usage_output" chflags -v
+	atf_check -s not-exit:0 -e match:"$usage_output" chflags -f
+	atf_check -s not-exit:0 -e match:"$usage_output" chflags -H
+	atf_check -s not-exit:0 -e match:"$usage_output" chflags -h
+	atf_check -s not-exit:0 -e match:"$usage_output" chflags -L
+	atf_check -s not-exit:0 -e match:"$usage_output" chflags -P
+	atf_check -s not-exit:0 -e match:"$usage_output" chflags -R
+	atf_check -s not-exit:0 -e match:"$usage_output" chflags -v
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that chflags fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that chflags(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" chflags
+	atf_check -s not-exit:0 -e match:"$usage_output" chflags
 }
 
 atf_init_test_cases()

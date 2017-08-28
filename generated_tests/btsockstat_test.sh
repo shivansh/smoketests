@@ -34,57 +34,34 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'
-usage: smbutil [-hv] command [args]
-where commands are:
- crypt [password]		slightly encrypt password
- help command			display help on "command"
- lc 				display active connections
- login //user@host[/share]	login to the specified host
- logout //user@host[/share]	logout from the specified host
- print //user@host/share file	print file to the specified remote printer
- view //user@host		list resources on the specified host
-
-' smbutil -h
-	atf_check -s exit:1 -e inline:'
-usage: smbutil [-hv] command [args]
-where commands are:
- crypt [password]		slightly encrypt password
- help command			display help on "command"
- lc 				display active connections
- login //user@host[/share]	login to the specified host
- logout //user@host[/share]	logout from the specified host
- print //user@host/share file	print file to the specified remote printer
- view //user@host		list resources on the specified host
-
-' smbutil -v
+	atf_check -s not-exit:0 -e inline:"Usage: btsockstat [-M core ] [-n] [-p proto] [-r]
+" btsockstat -h
+	atf_check -s not-exit:0 -e inline:"btsockstat: option requires an argument -- M
+Usage: btsockstat [-M core ] [-n] [-p proto] [-r]
+" btsockstat -M
+	atf_check -s not-exit:0 -e inline:"btsockstat: kvm_nlist: no namelist
+" btsockstat -n
+	atf_check -s not-exit:0 -e inline:"btsockstat: option requires an argument -- p
+Usage: btsockstat [-M core ] [-n] [-p proto] [-r]
+" btsockstat -p
+	atf_check -s not-exit:0 -e inline:"btsockstat: kvm_nlist: no namelist
+" btsockstat -r
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that smbutil fails and generates a valid output when no arguments are supplied"
+	atf_set "descr" "Verify that btsockstat(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:'
-usage: smbutil [-hv] command [args]
-where commands are:
- crypt [password]		slightly encrypt password
- help command			display help on "command"
- lc 				display active connections
- login //user@host[/share]	login to the specified host
- logout //user@host[/share]	logout from the specified host
- print //user@host/share file	print file to the specified remote printer
- view //user@host		list resources on the specified host
-
-' smbutil
+	atf_check -s not-exit:0 -e inline:"btsockstat: kvm_nlist: no namelist
+" btsockstat
 }
 
 atf_init_test_cases()
 {
-	atf_add_test_case h_flag
 	atf_add_test_case invalid_usage
 	atf_add_test_case no_arguments
 }

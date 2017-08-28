@@ -26,9 +26,7 @@
 # $FreeBSD$
 #
 
-usage_output='usage: cp [-R [-H | -L | -P]] [-f | -i | -n] [-alpsvx] source_file target_file
-       cp [-R [-H | -L | -P]] [-f | -i | -n] [-alpsvx] source_file ... target_directory
-'
+usage_output='usage: cp'
 
 atf_test_case invalid_usage
 invalid_usage_head()
@@ -38,30 +36,30 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" cp -H
-	atf_check -s exit:1 -e inline:"$usage_output" cp -L
-	atf_check -s exit:1 -e inline:"$usage_output" cp -P
-	atf_check -s exit:1 -e inline:"$usage_output" cp -R
-	atf_check -s exit:1 -e inline:"$usage_output" cp -a
-	atf_check -s exit:1 -e inline:"$usage_output" cp -f
-	atf_check -s exit:1 -e inline:"$usage_output" cp -i
-	atf_check -s exit:1 -e inline:"$usage_output" cp -l
-	atf_check -s exit:1 -e inline:"$usage_output" cp -n
-	atf_check -s exit:1 -e inline:"$usage_output" cp -p
-	atf_check -s exit:1 -e inline:"$usage_output" cp -s
-	atf_check -s exit:1 -e inline:"$usage_output" cp -v
-	atf_check -s exit:1 -e inline:"$usage_output" cp -x
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -H
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -L
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -P
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -R
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -a
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -f
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -i
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -l
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -n
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -p
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -s
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -v
+	atf_check -s not-exit:0 -e match:"$usage_output" cp -x
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that cp fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that cp(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" cp
+	atf_check -s not-exit:0 -e match:"$usage_output" cp
 }
 
 atf_init_test_cases()

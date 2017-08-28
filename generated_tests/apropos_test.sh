@@ -26,10 +26,6 @@
 # $FreeBSD$
 #
 
-usage_output='usage: apropos [-acfhklw] [-C file] [-M path] [-m path] [-O outkey] [-S arch]
-	       [-s section] expression ...
-'
-
 atf_test_case invalid_usage
 invalid_usage_head()
 {
@@ -38,20 +34,45 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" apropos -a
-	atf_check -s exit:1 -e inline:"$usage_output" apropos -f
-	atf_check -s exit:1 -e inline:"$usage_output" apropos -k
+	atf_check -s not-exit:0 -e match:"$usage_output" apropos -a
+	atf_check -s not-exit:0 -e inline:"apropos: option requires an argument -- C
+usage: apropos [-acfhklw] [-C file] [-M path] [-m path] [-O outkey] [-S arch]
+	       [-s section] expression ...
+" apropos -C
+	atf_check -s not-exit:0 -e match:"$usage_output" apropos -f
+	atf_check -s not-exit:0 -e match:"$usage_output" apropos -k
+	atf_check -s not-exit:0 -e inline:"apropos: option requires an argument -- M
+usage: apropos [-acfhklw] [-C file] [-M path] [-m path] [-O outkey] [-S arch]
+	       [-s section] expression ...
+" apropos -M
+	atf_check -s not-exit:0 -e inline:"apropos: option requires an argument -- m
+usage: apropos [-acfhklw] [-C file] [-M path] [-m path] [-O outkey] [-S arch]
+	       [-s section] expression ...
+" apropos -m
+	atf_check -s not-exit:0 -e inline:"apropos: option requires an argument -- O
+usage: apropos [-acfhklw] [-C file] [-M path] [-m path] [-O outkey] [-S arch]
+	       [-s section] expression ...
+" apropos -O
+	atf_check -s not-exit:0 -e inline:"apropos: option requires an argument -- S
+usage: apropos [-acfhklw] [-C file] [-M path] [-m path] [-O outkey] [-S arch]
+	       [-s section] expression ...
+" apropos -S
+	atf_check -s not-exit:0 -e inline:"apropos: option requires an argument -- s
+usage: apropos [-acfhklw] [-C file] [-M path] [-m path] [-O outkey] [-S arch]
+	       [-s section] expression ...
+" apropos -s
+	atf_check -s not-exit:0 -e match:"$usage_output" apropos -i
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that apropos fails and generates a valid usage message when no arguments are supplied"
+	atf_set "descr" "Verify that apropos(1) fails and generates a valid usage message when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:"$usage_output" apropos
+	atf_check -s not-exit:0 -e match:"$usage_output" apropos
 }
 
 atf_init_test_cases()

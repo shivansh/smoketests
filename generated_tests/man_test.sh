@@ -26,10 +26,6 @@
 # $FreeBSD$
 #
 
-usage_output='usage: whatis [-acfhklw] [-C file] [-M path] [-m path] [-O outkey] [-S arch]
-	      [-s section] name ...
-'
-
 atf_test_case h_flag
 h_flag_head()
 {
@@ -38,12 +34,12 @@ h_flag_head()
 
 h_flag_body()
 {
-	atf_check -s exit:0 -o inline:'Usage:
+	atf_check -s exit:0 -o inline:"Usage:
  man [-adho] [-t | -w] [-M manpath] [-P pager] [-S mansect]
      [-m arch[:machine]] [-p [eprtv]] [mansect] page [...]
  man -f page [...] -- Emulates whatis(1)
  man -k page [...] -- Emulates apropos(1)
-' man -h
+" man -h
 }
 
 atf_test_case invalid_usage
@@ -54,38 +50,66 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'What manual page do you want?
-' man -a
-	atf_check -s exit:1 -e inline:'Illegal option -c
+	atf_check -s not-exit:0 -e inline:"What manual page do you want?
+" man -a
+	atf_check -s not-exit:0 -e inline:"Illegal option -C
 Usage:
  man [-adho] [-t | -w] [-M manpath] [-P pager] [-S mansect]
      [-m arch[:machine]] [-p [eprtv]] [mansect] page [...]
  man -f page [...] -- Emulates whatis(1)
  man -k page [...] -- Emulates apropos(1)
-' man -c
-	atf_check -s exit:1 -e inline:"$usage_output" man -f
-	atf_check -s exit:1 -e inline:"$usage_output" man -k
-	atf_check -s exit:1 -e inline:'Illegal option -l
+" man -C
+	atf_check -s not-exit:0 -e inline:"Illegal option -c
 Usage:
  man [-adho] [-t | -w] [-M manpath] [-P pager] [-S mansect]
      [-m arch[:machine]] [-p [eprtv]] [mansect] page [...]
  man -f page [...] -- Emulates whatis(1)
  man -k page [...] -- Emulates apropos(1)
-' man -l
-	atf_check -s exit:1 -e inline:'What manual page do you want?
-' man -w
+" man -c
+	atf_check -s not-exit:0 -e match:"$usage_output" man -f
+	atf_check -s not-exit:0 -e match:"$usage_output" man -k
+	atf_check -s not-exit:0 -e inline:"Illegal option -l
+Usage:
+ man [-adho] [-t | -w] [-M manpath] [-P pager] [-S mansect]
+     [-m arch[:machine]] [-p [eprtv]] [mansect] page [...]
+ man -f page [...] -- Emulates whatis(1)
+ man -k page [...] -- Emulates apropos(1)
+" man -l
+	atf_check -s not-exit:0 -e inline:"No arg for -M option
+Usage:
+ man [-adho] [-t | -w] [-M manpath] [-P pager] [-S mansect]
+     [-m arch[:machine]] [-p [eprtv]] [mansect] page [...]
+ man -f page [...] -- Emulates whatis(1)
+ man -k page [...] -- Emulates apropos(1)
+" man -M
+	atf_check -s not-exit:0 -e inline:"No arg for -m option
+Usage:
+ man [-adho] [-t | -w] [-M manpath] [-P pager] [-S mansect]
+     [-m arch[:machine]] [-p [eprtv]] [mansect] page [...]
+ man -f page [...] -- Emulates whatis(1)
+ man -k page [...] -- Emulates apropos(1)
+" man -m
+	atf_check -s not-exit:0 -e inline:"No arg for -S option
+Usage:
+ man [-adho] [-t | -w] [-M manpath] [-P pager] [-S mansect]
+     [-m arch[:machine]] [-p [eprtv]] [mansect] page [...]
+ man -f page [...] -- Emulates whatis(1)
+ man -k page [...] -- Emulates apropos(1)
+" man -S
+	atf_check -s not-exit:0 -e inline:"What manual page do you want?
+" man -w
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that man fails and generates a valid output when no arguments are supplied"
+	atf_set "descr" "Verify that man(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:'What manual page do you want?
-' man
+	atf_check -s not-exit:0 -e inline:"What manual page do you want?
+" man
 }
 
 atf_init_test_cases()

@@ -50,13 +50,13 @@ invalid_usage_body()
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that echo executes successfully and produces a valid output when invoked without any arguments"
+	atf_set "descr" "Verify that echo(1) executes successfully and produces a valid output when invoked without any arguments"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:0 -o inline:'
-' echo
+	atf_check -s exit:0 -o inline:"
+" echo
 }
 
 atf_init_test_cases()

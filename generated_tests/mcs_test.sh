@@ -26,6 +26,8 @@
 # $FreeBSD$
 #
 
+usage_output='sh: mcs: n'
+
 atf_test_case invalid_usage
 invalid_usage_head()
 {
@@ -34,24 +36,32 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'sh: mcs: not found
-' mcs -c
-	atf_check -s exit:1 -e inline:'sh: mcs: not found
-' mcs -d
-	atf_check -s exit:1 -e inline:'sh: mcs: not found
-' mcs -p
+	atf_check -s not-exit:0 -e inline:"sh: mcs: not found
+" mcs -a
+	atf_check -s not-exit:0 -e inline:"sh: mcs: not found
+" mcs -c
+	atf_check -s not-exit:0 -e inline:"sh: mcs: not found
+" mcs -d
+	atf_check -s not-exit:0 -e inline:"sh: mcs: not found
+" mcs -h
+	atf_check -s not-exit:0 -e inline:"sh: mcs: not found
+" mcs -n
+	atf_check -s not-exit:0 -e inline:"sh: mcs: not found
+" mcs -p
+	atf_check -s not-exit:0 -e inline:"sh: mcs: not found
+" mcs -V
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that mcs fails and generates a valid output when no arguments are supplied"
+	atf_set "descr" "Verify that mcs(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:'sh: mcs: not found
-' mcs
+	atf_check -s not-exit:0 -e inline:"sh: mcs: not found
+" mcs
 }
 
 atf_init_test_cases()

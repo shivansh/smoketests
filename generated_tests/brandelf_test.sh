@@ -34,8 +34,8 @@ l_flag_head()
 
 l_flag_body()
 {
-	atf_check -s exit:0 -o inline:'known ELF types are: FreeBSD(9) Linux(3) Solaris(6) SVR4(0) 
-' brandelf -l
+	atf_check -s exit:0 -o inline:"known ELF types are: FreeBSD(9) Linux(3) Solaris(6) SVR4(0) 
+" brandelf -l
 }
 
 atf_test_case invalid_usage
@@ -46,22 +46,28 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'brandelf: no file(s) specified
+	atf_check -s not-exit:0 -e inline:"brandelf: option requires an argument -- f
 usage: brandelf [-lv] [-f ELF_ABI_number] [-t string] file ...
-' brandelf -v
+" brandelf -f
+	atf_check -s not-exit:0 -e inline:"brandelf: no file(s) specified
+usage: brandelf [-lv] [-f ELF_ABI_number] [-t string] file ...
+" brandelf -v
+	atf_check -s not-exit:0 -e inline:"brandelf: option requires an argument -- t
+usage: brandelf [-lv] [-f ELF_ABI_number] [-t string] file ...
+" brandelf -t
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that brandelf fails and generates a valid output when no arguments are supplied"
+	atf_set "descr" "Verify that brandelf(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:'brandelf: no file(s) specified
+	atf_check -s not-exit:0 -e inline:"brandelf: no file(s) specified
 usage: brandelf [-lv] [-f ELF_ABI_number] [-t string] file ...
-' brandelf
+" brandelf
 }
 
 atf_init_test_cases()

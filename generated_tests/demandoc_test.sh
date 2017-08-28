@@ -26,6 +26,9 @@
 # $FreeBSD$
 #
 
+usage_output='sh: demandoc: not found
+'
+
 atf_test_case invalid_usage
 invalid_usage_head()
 {
@@ -34,20 +37,20 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'sh: demandoc: not found
-' demandoc -w
+	atf_check -s not-exit:0 -e inline:"sh: demandoc: not found
+" demandoc -w
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that demandoc fails and generates a valid output when no arguments are supplied"
+	atf_set "descr" "Verify that demandoc(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:'sh: demandoc: not found
-' demandoc
+	atf_check -s not-exit:0 -e inline:"sh: demandoc: not found
+" demandoc
 }
 
 atf_init_test_cases()

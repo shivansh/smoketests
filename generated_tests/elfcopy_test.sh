@@ -26,19 +26,115 @@
 # $FreeBSD$
 #
 
+usage_output='sh: elfcopy: n'
+
+atf_test_case invalid_usage
+invalid_usage_head()
+{
+	atf_set "descr" "Verify that an invalid usage with a supported option produces a valid error message"
+}
+
+invalid_usage_body()
+{
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -h
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -I
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -K
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -L
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -N
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -O
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -R
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -S
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -V
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -W
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -X
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -d
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -j
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -p
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -w
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy -x
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --add-gnu-debuglink
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --add-section
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --adjust-warnings
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --change-section-lma
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --change-section-vma
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --extract-dwo
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --gap-fill
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --globalize-symbol
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --globalize-symbols
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --localize-hidden
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --localize-symbols
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --no-adjust-warnings
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --only-keep-debug
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --pad-to
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --prefix-alloc-sections
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --prefix-sections
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --prefix-symbols
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --rename-section
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --set-section-flags
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --set-start
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --srec-forceS3
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --srec-len
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --strip-dwo
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --strip-symbols=
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy --strip-unneeded
+}
+
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that elfcopy fails and generates a valid output when no arguments are supplied"
+	atf_set "descr" "Verify that elfcopy(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:'sh: elfcopy: not found
-' elfcopy
+	atf_check -s not-exit:0 -e inline:"sh: elfcopy: not found
+" elfcopy
 }
 
 atf_init_test_cases()
 {
+	atf_add_test_case h_flag
+	atf_add_test_case invalid_usage
 	atf_add_test_case no_arguments
 }

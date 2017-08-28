@@ -26,6 +26,8 @@
 # $FreeBSD$
 #
 
+usage_output='sh: bmake: n'
+
 atf_test_case invalid_usage
 invalid_usage_head()
 {
@@ -34,44 +36,64 @@ invalid_usage_head()
 
 invalid_usage_body()
 {
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -B
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -e
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -i
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -k
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -n
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -N
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -q
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -r
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -s
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -t
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -W
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -w
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake -X
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -B
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -C
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -D
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -d
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -e
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -f
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -I
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -i
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -J
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -j
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -k
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -m
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -n
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -N
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -q
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -r
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -s
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -T
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -t
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -V
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -W
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -w
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake -X
 }
 
 atf_test_case no_arguments
 no_arguments_head()
 {
-	atf_set "descr" "Verify that bmake fails and generates a valid output when no arguments are supplied"
+	atf_set "descr" "Verify that bmake(1) fails and generates a valid output when no arguments are supplied"
 }
 
 no_arguments_body()
 {
-	atf_check -s exit:1 -e inline:'sh: bmake: not found
-' bmake
+	atf_check -s not-exit:0 -e inline:"sh: bmake: not found
+" bmake
 }
 
 atf_init_test_cases()
